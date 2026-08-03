@@ -299,7 +299,9 @@ func main() {
 ```
 
 > [!IMPORTANT] 
-> Add logic to `Prepare` to vote no if this transaction would go into a negative balance.
+> Complete the implementation of `TryCommit` that runs Two Phase Commit across all servers in the clients slice.
+> - Make sure to log the result of each server's vote
+> - Make sure to log the Abort/Commit decision made for the transaction
 
 Note: Your code can assume all transaction servers are up and running and does not need to handle timeouts.
 
@@ -328,7 +330,7 @@ Commands:
 > op A alice -100
 submitted to client 0
 > commit A
-2026/08/03 13:04:00 VOTED NO!
+2026/08/03 13:04:00 0: VOTED NO!
 2026/08/03 13:04:00 TXN completed
 ```
 
@@ -367,19 +369,24 @@ submitted to client 1
 > op A bob 100
 submitted to client 0
 > commit A
+2026/08/03 13:07:33 0: VOTED YES
+2026/08/03 13:07:33 1: VOTED YES
 2026/08/03 13:07:33 TXN completed
 > op B alice -200
 submitted to client 1
 > op B bob 200
 submitted to client 0
 > commit B
-2026/08/03 13:07:42 VOTED NO!
+2026/08/03 13:07:42 0: VOTED NO!
+2026/08/03 13:07:42 1: VOTED YES
 2026/08/03 13:07:42 TXN completed
 > op C alice -100
 submitted to client 1
 > op C bob 100
 submitted to client 0
 > commit C
+2026/08/03 13:08:01 0: VOTED YES
+2026/08/03 13:08:01 1: VOTED YES
 2026/08/03 13:08:01 TXN completed
 ```
 
