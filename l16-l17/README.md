@@ -377,8 +377,8 @@ submitted to client 1
 > op B bob 200
 submitted to client 0
 > commit B
-2026/08/03 13:07:42 0: VOTED NO!
-2026/08/03 13:07:42 1: VOTED YES
+2026/08/03 13:07:42 0: VOTED YES
+2026/08/03 13:07:42 1: VOTED NO!
 2026/08/03 13:07:42 TXN completed
 > op C alice -100
 submitted to client 1
