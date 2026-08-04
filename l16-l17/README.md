@@ -82,19 +82,11 @@ func (t *TxnServer) Prepare(args *Args, reply *Reply) error {
 
 	for _,op := range(t.txn[args.TxnID]) {
 		temp[op.Key] += op.Value
-		if(temp[op.Key] < 0) {
-			log.Printf("TXN %v: vote NO, negative balance @ %v\n", args.TxnID, op.Key)
-			vote = false
-		}
+		
 	}
 
-	if(vote) {
-		reply.Success = true
-		t.temp = temp
-	} else {
-		reply.Success = false
-		t.temp = nil
-	}
+    // TODO: populate reply.Success with the vote
+
 	return nil
 }
 
